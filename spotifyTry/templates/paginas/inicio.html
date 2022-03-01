@@ -1,0 +1,174 @@
+{% extends "./base.html" %} {% block body %} {% if error %}
+<p>Hubo un error</p>
+{% endif %}
+
+<div class="row">
+  <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+    <h2>REGISTRO DE PERSONAS</h2>
+    <br />
+    <div class="card">
+      <div class="card-body">
+        <form action="/" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-group">
+            <input
+              type="text"
+              id="txtNombres"
+              name="nombres"
+              class="form-control"
+              placeholder="Nombres"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+          </div>
+          <br />
+          <div class="form-group">
+            <input
+              type="text"
+              id="txtApellidos"
+              name="apellidos"
+              class="form-control"
+              placeholder="Apellidos"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+          </div>
+          <br />
+          <div class="form-group">
+            <select class="form-control" id="documento" name="tipodocumento">
+              {% for TipoDocumento in Tipo %}
+              <option value="{{TipoDocumento.id}}">{{TipoDocumento}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <br />
+          <div class="form-group">
+            <input
+              type="file"
+              id="txtFile"
+              name="documento"
+              class="form-control"
+              placeholder="File"
+              required
+            />
+          </div>
+          <br />
+          <div class="form-group">
+            <select class="form-control" id="ciudad" name="lugarderecidencia">
+              {% for ciudad in ciudades%}
+              <option value="{{ciudad.id}}">{{ciudad}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <br />
+          <div class="form-group">
+            <input
+              type="date"
+              id="txtFecha"
+              name="fechadenacimiento"
+              class="form-control"
+              placeholder="Fecha de nacimiento"
+              required
+            />
+          </div>
+          <br />
+          <div class="form-group">
+            <input
+              type="email"
+              id="txtEmail"
+              name="email"
+              class="form-control"
+              placeholder="Email"
+              minlength="6"
+              maxlength="200"
+              required
+            />
+          </div>
+          <br />
+          <div class="form-group">
+            <input
+              type="text"
+              id="txtUsuario"
+              name="usuario"
+              class="form-control"
+              placeholder="Usuario"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+          </div>
+          <br />
+          <div class="form-group">
+            <input
+              type="number"
+              id="txtTelefono"
+              name="telefono"
+              class="form-control"
+              placeholder="Telefono"
+              minlength="6"
+              maxlength="200"
+              required
+            />
+          </div>
+          <br />
+          <div class="form-group">
+            <input
+              type="password"
+              id="txtContraseña"
+              name="password"
+              class="form-control"
+              placeholder="Contraseña"
+              minlength="6"
+              maxlength="200"
+              required
+            />
+          </div>
+          <br />
+          <div class="form-group">
+            <button type="submit" class="btn btn-success btn-block text-white">
+              Guardar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+    <h1>LISTADO DE PERSONAS REGISTRADAS</h1>
+    <br />
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Tipo de documento</th>
+            <th>Lugar de recidencia</th>
+            <th>Fecha de nacimiento</th>
+            <th>Email</th>
+            <th>Usuario</th>
+            <th>Telefono</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for p in personas%}
+          <tr>
+            <td>{{p.nombres}}</td>
+            <td>{{p.apellidos}}</td>
+            <td>{{p.tipodocumento}}</td>
+            <td>{{p.lugarderecidencia}}</td>
+            <td>{{p.fechadenacimiento}}</td>
+            <td>{{p.email}}</td>
+            <td>{{p.usuario}}</td>
+            <td>{{p.telefono}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
