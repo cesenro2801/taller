@@ -34,6 +34,12 @@ def index(request):
         })
 
 
+def eliminacionPersonas(request, usuario):
+    personas = Persona.objects.get(usuario=usuario)
+    personas.delete()
+    return redirect('/')
+
+
 def userPersona(req: HttpRequest, usuario):
     print("%s HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEYS" % usuario)
     persona = get_object_or_404(Persona, pk=usuario)

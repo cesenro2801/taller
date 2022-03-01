@@ -150,6 +150,7 @@
             <th>Email</th>
             <th>Usuario</th>
             <th>Telefono</th>
+            <th colspan="2">Opciones</th>
           </tr>
         </thead>
         <tbody>
@@ -163,6 +164,16 @@
             <td>{{p.email}}</td>
             <td>{{p.usuario}}</td>
             <td>{{p.telefono}}</td>
+            <td>
+              <a href="edicionPersonas/{{p.usuario}}" class="btn btn-info"
+                >Editar</a
+              >
+            </td>
+            <td>
+              <a href="eliminacionPersonas/{{p.usuario}}" class="btn btn-danger"
+                >Eliminar</a
+              >
+            </td>
           </tr>
           {% endfor %}
         </tbody>
