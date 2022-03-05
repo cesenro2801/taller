@@ -164,8 +164,9 @@
             <td>{{p.email}}</td>
             <td>{{p.usuario}}</td>
             <td>{{p.telefono}}</td>
+            <td></td>
             <td>
-              <a href="edicionPersonas/{{p.usuario}}" class="btn btn-info"
+              <a href="{% url 'spotifyTry:editar' p.id %}" class="btn btn-info"
                 >Editar</a
               >
             </td>

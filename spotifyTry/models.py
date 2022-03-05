@@ -34,6 +34,6 @@ class Persona(models.Model):
     lugarderecidencia = models.ForeignKey(Ciudad, on_delete=models.CASCADE)
     fechadenacimiento = models.DateField()
     email = models.EmailField()
-    usuario = models.CharField(max_length=100, primary_key=True, unique=True)
+    usuario = models.CharField(max_length=100, unique=True)
     telefono = models.IntegerField()
     password = models.CharField(max_length=100)

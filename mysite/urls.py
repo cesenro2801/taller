@@ -20,7 +20,6 @@ from django.http import HttpResponse
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('spotifyTry.urls')),
     path('usuarios/', include('spotifyTry.urls')),
     #path('', lambda x: HttpResponse('spotifyTry.urls'))
 ]

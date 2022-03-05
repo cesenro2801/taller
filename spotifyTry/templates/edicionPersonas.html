@@ -1,0 +1,156 @@
+{% extends "./paginas/base.html" %} {% block body %}
+<div class="col-md-4 offset-md-4">
+  <h2>EDICION DE PERSONAS</h2>
+  <br />
+  <div class="card">
+    <div class="card-body">
+      <form
+        action="{% url 'spotifyTry:editarpersona' p.id %}"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        {% csrf_token %}
+        <div class="form-group">
+          <input
+            type="text"
+            id="txtNombres"
+            name="nombres"
+            value="{{p.nombres}}"
+            class="form-control"
+            placeholder="Nombres"
+            minlength="2"
+            maxlength="200"
+            required
+          />
+        </div>
+        <br />
+        <div class="form-group">
+          <input
+            type="text"
+            id="txtApellidos"
+            name="apellidos"
+            value="{{p.apellidos}}"
+            class="form-control"
+            placeholder="Apellidos"
+            minlength="2"
+            maxlength="200"
+            required
+          />
+        </div>
+        <br />
+        <div class="form-group">
+          <select
+            class="form-control"
+            id="documento"
+            name="tipodocumento"
+            value="{{p.tipodocumento}}"
+          >
+            {% for TipoDocumento in Tipo %}
+            <option value="{{TipoDocumento.id}}">{{TipoDocumento}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <br />
+        <div class="form-group">
+          <input
+            type="file"
+            id="txtFile"
+            name="documento"
+            value="{{p.documento}}"
+            class="form-control"
+            placeholder="File"
+            required
+          />
+        </div>
+        <br />
+        <div class="form-group">
+          <select
+            class="form-control"
+            id="ciudad"
+            name="lugarderecidencia"
+            value="{{p.lugarderecidencia}}"
+          >
+            {% for ciudad in ciudades%}
+            <option value="{{ciudad.id}}">{{ciudad}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <br />
+        <div class="form-group">
+          <input
+            type="date"
+            id="txtFecha"
+            name="fechadenacimiento"
+            class="form-control"
+            placeholder="Fecha de nacimiento"
+            required
+          />
+        </div>
+        <br />
+        <div class="form-group">
+          <input
+            type="email"
+            id="txtEmail"
+            name="email"
+            value="{{p.email}}"
+            class="form-control"
+            placeholder="Email"
+            minlength="6"
+            maxlength="200"
+            required
+          />
+        </div>
+        <br />
+        <div class="form-group">
+          <input
+            type="text"
+            id="txtUsuario"
+            name="usuario"
+            value="{{p.usuario}}"
+            readonly
+            class="form-control"
+            placeholder="Usuario"
+            minlength="2"
+            maxlength="200"
+            required
+          />
+        </div>
+        <br />
+        <div class="form-group">
+          <input
+            type="number"
+            id="txtTelefono"
+            name="telefono"
+            value="{{p.telefono}}"
+            class="form-control"
+            placeholder="Telefono"
+            minlength="6"
+            maxlength="200"
+            required
+          />
+        </div>
+        <br />
+        <div class="form-group">
+          <input
+            type="password"
+            id="txtContraseña"
+            name="password"
+            value="{{p.password }}"
+            class="form-control"
+            placeholder="Contraseña"
+            minlength="6"
+            maxlength="200"
+            required
+          />
+        </div>
+        <br />
+        <div class="form-group">
+          <button type="submit" class="btn btn-success btn-block text-white">
+            Guardar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

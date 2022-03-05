@@ -34,10 +34,49 @@ def index(request):
         })
 
 
+def edicionPersonas(request, id):
+    personas = Persona.objects.get(id=id)
+    #personasListadas = Persona.objects.all()
+    ciudades = Ciudad.objects.all()
+    Tipo = TipoDocumento.objects.all()
+    return render(
+        request,
+        "edicionPersonas.html",
+        {
+            "p": personas,
+            #"personas": personasListadas,
+            "ciudades": ciudades,
+            "Tipo": Tipo
+        })
+
+
 def eliminacionPersonas(request, usuario):
     personas = Persona.objects.get(usuario=usuario)
     personas.delete()
     return redirect('/')
+
+
+def editarPersonas(request, id):
+    if request.method == 'POST':
+        persona = get_object_or_404(Persona, id=id)
+        form = FormPersona(request.POST, request.FILES, instance=persona)
+
+        if form.is_valid():
+            print("aca2")
+
+            persona.nombre = form.cleaned_data.get("nombres")
+            persona.apellido = form.cleaned_data.get("apellidos")
+            persona.tipodocumento = form.cleaned_data.get("tipodocumento")
+            persona.lugarderecidencia = form.cleaned_data.get(
+                "lugarderecidencia")
+            persona.fechadenacimiento = form.cleaned_data.get(
+                "fechadenacimiento")
+            persona.email = form.cleaned_data.get("email")
+            persona.usuario = form.cleaned_data.get("usuario")
+            persona.telefono = form.cleaned_data.get("telefono")
+            persona.password = form.cleaned_data.get("password")
+            persona.save()
+            return redirect('/')
 
 
 def userPersona(req: HttpRequest, usuario):
