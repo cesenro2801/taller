@@ -36,15 +36,13 @@ def index(request):
 
 def edicionPersonas(request, id):
     personas = Persona.objects.get(id=id)
-    #personasListadas = Persona.objects.all()
+    personasListadas = Persona.objects.all()
     ciudades = Ciudad.objects.all()
     Tipo = TipoDocumento.objects.all()
     return render(
-        request,
-        "edicionPersonas.html",
-        {
+        request, "edicionPersonas.html", {
             "p": personas,
-            #"personas": personasListadas,
+            "personas": personasListadas,
             "ciudades": ciudades,
             "Tipo": Tipo
         })
